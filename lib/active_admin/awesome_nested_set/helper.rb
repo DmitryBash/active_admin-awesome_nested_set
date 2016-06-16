@@ -46,7 +46,7 @@ module ActiveAdmin
       #    end
       #  end
       def sortable_tree_columns
-         namespace = active_admin_config.namespace.name == :root ? nil : "#{active_admin_config.namespace.name}_"
+        namespace = ActiveAdmin.application.default_namespace == false ? nil  : "#{ActiveAdmin.application.default_namespace}_"
         column "&#9650;".html_safe do |resource|
           link_to("&#9650;".html_safe, self.send(:"move_up_#{namespace}#{resource.class.model_name.to_s.underscore.gsub("/", "_")}_path", resource), :class => "arrow") if resource.left_sibling
         end
